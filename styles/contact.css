@@ -1,0 +1,93 @@
+/* Estilos específicos para la página de contacto */
+
+.contact-section {
+    margin-bottom: 4rem;
+  }
+  
+  .contact-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .contact-info-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-info-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .contact-info-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  
+  .contact-info-text h3 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .contact-info-text p {
+    color: var(--color-text-light);
+  }
+  
+  .contact-form-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  
+  .contact-form-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  
+  .map-section {
+    margin-top: 4rem;
+  }
+  
+  .map-section h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary-dark);
+  }
+  
+  /* Ajuste para el mapa */
+  .map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  
+  /* Estilos para los placeholders no seleccionables */
+  input::placeholder,
+  textarea::placeholder {
+    user-select: none;
+  }
+  
+  

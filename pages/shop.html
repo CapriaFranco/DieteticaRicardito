@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda - Dietética Ricardito</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/shop.css">
+  <!-- Fuente Inter de Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header no-select">
+      <div class="container header-container">
+          <div class="logo-container">
+              <a href="/" class="logo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-leaf">
+                      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                  </svg>
+                  <span class="logo-text">Dietética Ricardito</span>
+                  <span class="logo-text-mobile">Ricardito</span>
+              </a>
+          </div>
+          
+          <nav class="main-nav">
+              <ul>
+                  <li><a href="/" class="nav-link">Inicio</a></li>
+                  <li><a href="../pages/shop.html" class="nav-link active">Tienda</a></li>
+                  <li><a href="../pages/about.html" class="nav-link">Nosotros</a></li>
+                  <li><a href="../pages/contact.html" class="nav-link">Contacto</a></li>
+                  <li><a href="../pages/faq.html" class="nav-link">FAQ</a></li>
+              </ul>
+          </nav>
+          
+          <div class="header-actions">
+              <button id="cart-toggle" class="icon-button" aria-label="Carrito de compras">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                      <circle cx="8" cy="21" r="1"></circle>
+                      <circle cx="19" cy="21" r="1"></circle>
+                      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                  </svg>
+                  <span id="cart-count" class="cart-count">0</span>
+              </button>
+              
+              <button id="menu-toggle" class="menu-toggle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                      <line x1="4" x2="20" y1="12" y2="12"></line>
+                      <line x1="4" x2="20" y1="6" y2="6"></line>
+                      <line x1="4" x2="20" y1="18" y2="18"></line>
+                  </svg>
+              </button>
+              
+              <button id="account-toggle" class="button account-button">
+                  Mi Cuenta
+              </button>
+          </div>
+      </div>
+  </header>
+
+  <!-- Menú móvil -->
+  <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu-container">
+          <div class="mobile-menu-header">
+              <a href="/" class="logo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-leaf">
+                      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                  </svg>
+                  <span>Ricardito</span>
+              </a>
+              <button id="close-mobile-menu" class="close-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                  </svg>
+              </button>
+          </div>
+          <nav class="mobile-nav">
+              <a href="/" class="mobile-nav-link">Inicio</a>
+              <a href="../pages/shop.html" class="mobile-nav-link active">Tienda</a>
+              <a href="../pages/about.html" class="mobile-nav-link">Nosotros</a>
+              <a href="../pages/contact.html" class="mobile-nav-link">Contacto</a>
+              <a href="#" class="mobile-nav-link mobile-account-link" id="mobile-account-toggle">Mi Cuenta</a>
+          </nav>
+      </div>
+  </div>
+
+  <!-- Carrito de compras -->
+  <div id="cart-sidebar" class="cart-sidebar">
+      <div class="cart-header">
+          <h2>Tu Carrito</h2>
+          <button id="close-cart" class="close-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+              </svg>
+          </button>
+      </div>
+      <div id="cart-items" class="cart-items">
+          <!-- Los items del carrito se agregarán dinámicamente -->
+          <div class="empty-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <circle cx="8" cy="21" r="1"></circle>
+                  <circle cx="19" cy="21" r="1"></circle>
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+              </svg>
+              <p>Tu carrito está vacío</p>
+              <a href="shop.html" class="button">Ir a la tienda</a>
+          </div>
+      </div>
+      <div class="cart-footer">
+          <div class="cart-total">
+              <span>Total:</span>
+              <span id="cart-total-price">$0</span>
+          </div>
+          <button class="button checkout-button">Finalizar Compra</button>
+      </div>
+  </div>
+
+  <!-- Modal de cuenta -->
+  <div id="account-modal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>Mi Cuenta</h2>
+              <button id="close-account-modal" class="close-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                  </svg>
+              </button>
+          </div>
+          <div class="modal-tabs">
+              <button class="tab-button active" data-tab="login-tab">Iniciar Sesión</button>
+              <button class="tab-button" data-tab="register-tab">Registrarse</button>
+          </div>
+          <!-- Modal de cuenta - Agregar botón para mostrar/ocultar contraseña -->
+          <div id="login-tab" class="tab-content active">
+              <form id="login-form" class="form">
+                  <div class="form-group">
+                      <label for="login-email">Email</label>
+                      <input type="email" id="login-email" placeholder="tu@email.com" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="login-password">Contraseña</label>
+                      <div class="password-input-container">
+                          <input type="password" id="login-password" placeholder="Tu contraseña" required>
+                          <button type="button" class="toggle-password" data-target="login-password">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
+                                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                  <circle cx="12" cy="12" r="3"></circle>
+                              </svg>
+                          </button>
+                      </div>
+                  </div>
+                  <button type="submit" class="button">Iniciar Sesión</button>
+              </form>
+          </div>
+          <div id="register-tab" class="tab-content">
+              <form id="register-form" class="form">
+                  <div class="form-group">
+                      <label for="register-name">Nombre</label>
+                      <input type="text" id="register-name" placeholder="Tu nombre" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="register-email">Email</label>
+                      <input type="email" id="register-email" placeholder="tu@email.com" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="register-password">Contraseña</label>
+                      <div class="password-input-container">
+                          <input type="password" id="register-password" placeholder="Tu contraseña" required>
+                          <button type="button" class="toggle-password" data-target="register-password">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
+                                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                  <circle cx="12" cy="12" r="3"></circle>
+                              </svg>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="register-confirm-password">Confirmar Contraseña</label>
+                      <div class="password-input-container">
+                          <input type="password" id="register-confirm-password" placeholder="Confirma tu contraseña" required>
+                          <button type="button" class="toggle-password" data-target="register-confirm-password">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-eye">
+                                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                  <circle cx="12" cy="12" r="3"></circle>
+                              </svg>
+                          </button>
+                      </div>
+                  </div>
+                  <button type="submit" class="button">Registrarse</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <!-- Overlay para modales -->
+  <div id="overlay" class="overlay"></div>
+
+  <main>
+      <div class="container">
+          <h1 class="page-title">Nuestra Tienda</h1>
+          
+          <div class="shop-layout">
+              <!-- Filtros para pantallas grandes -->
+              <aside class="shop-sidebar sticky-sidebar">
+                  <div class="filter-card">
+                      <h3>Buscar</h3>
+                      <div class="search-container">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon search-icon">
+                              <circle cx="11" cy="11" r="8"></circle>
+                              <path d="m21 21-4.3-4.3"></path>
+                          </svg>
+                          <input type="search" id="product-search" placeholder="Buscar productos..." class="search-input">
+                      </div>
+                  </div>
+                  
+                  <div class="filter-card">
+                      <h3>Categorías</h3>
+                      <div class="filter-options no-select">
+                          <button class="filter-button active" data-category="todas">Todas</button>
+                          <button class="filter-button" data-category="sin-tacc">Sin TACC</button>
+                          <button class="filter-button" data-category="organicos">Orgánicos</button>
+                          <button class="filter-button" data-category="snacks">Snacks Saludables</button>
+                          <button class="filter-button" data-category="vegano">Veganos</button>
+                          <button class="filter-button" data-category="sin-azucar">Sin Azúcar</button>
+                          <button class="filter-button" data-category="proteinas">Proteínas</button>
+                      </div>
+                  </div>
+                  
+                  <div class="filter-card">
+                      <h3>Precio</h3>
+                      <div class="price-inputs-container">
+                          <div class="price-input-group">
+                              <label for="min-price">Mínimo</label>
+                              <div class="price-input-wrapper">
+                                  <span class="price-symbol">$</span>
+                                  <input type="text" id="min-price" placeholder="Mínimo" class="price-input" inputmode="numeric">
+                              </div>
+                          </div>
+                          <div class="price-input-group">
+                              <label for="max-price">Máximo</label>
+                              <div class="price-input-wrapper">
+                                  <span class="price-symbol">$</span>
+                                  <input type="text" id="max-price" placeholder="Máximo" class="price-input" inputmode="numeric">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Actualizar los filtros en la barra lateral -->
+                  <div class="filter-card">
+                      <h3>Filtros</h3>
+                      <div class="filter-options">
+                          <label class="checkbox-container">
+                              <input type="checkbox" id="destacados-filter">
+                              <span class="checkmark"></span>
+                              Productos destacados
+                          </label>
+                          <label class="checkbox-container">
+                              <input type="checkbox" id="nuevos-filter">
+                              <span class="checkmark"></span>
+                              Nuevos productos
+                          </label>
+                          <label class="checkbox-container">
+                              <input type="checkbox" id="promociones-filter">
+                              <span class="checkmark"></span>
+                              En promoción
+                          </label>
+                          <label class="checkbox-container">
+                              <input type="checkbox" id="ocultar-sin-stock-filter">
+                              <span class="checkmark"></span>
+                              Ocultar sin stock
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="filter-card">
+                      <h3>Descuento</h3>
+                      <div id="discount-filters" class="filter-options">
+                          <!-- Los filtros de descuento se generarán dinámicamente -->
+                      </div>
+                  </div>
+              </aside>
+              
+              <!-- Filtros móviles -->
+              <div class="mobile-filters">
+                  <div class="mobile-tabs">
+                      <button class="mobile-tab active" data-tab="search-tab">Buscar</button>
+                      <button class="mobile-tab" data-tab="categories-tab">Categorías</button>
+                      <button class="mobile-tab" data-tab="filters-tab">Filtros</button>
+                  </div>
+                  
+                  <div id="search-tab" class="mobile-tab-content active">
+                      <div class="search-container">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon search-icon">
+                              <circle cx="11" cy="11" r="8"></circle>
+                              <path d="m21 21-4.3-4.3"></path>
+                          </svg>
+                          <input type="search" id="mobile-product-search" placeholder="Buscar productos..." class="search-input">
+                      </div>
+                  </div>
+                  
+                  <div id="categories-tab" class="mobile-tab-content">
+                      <div class="mobile-filter-grid">
+                          <button class="filter-button active" data-category="todas">Todas</button>
+                          <button class="filter-button" data-category="sin-tacc">Sin TACC</button>
+                          <button class="filter-button" data-category="organicos">Orgánicos</button>
+                          <button class="filter-button" data-category="snacks">Snacks</button>
+                          <button class="filter-button" data-category="vegano">Veganos</button>
+                          <button class="filter-button" data-category="sin-azucar">Sin Azúcar</button>
+                          <button class="filter-button" data-category="proteinas">Proteínas</button>
+                      </div>
+                  </div>
+                  
+                  <div id="filters-tab" class="mobile-tab-content">
+                      <div class="mobile-filter-options">
+                          <div class="price-filter">
+                              <h4>Rango de precio</h4>
+                              <div class="mobile-price-inputs">
+                                  <div class="price-input-group">
+                                      <label for="mobile-min-price">Mínimo</label>
+                                      <div class="price-input-wrapper">
+                                          <span class="price-symbol">$</span>
+                                          <input type="text" id="mobile-min-price" placeholder="Mínimo" class="price-input" inputmode="numeric">
+                                      </div>
+                                  </div>
+                                  <div class="price-input-group">
+                                      <label for="mobile-max-price">Máximo</label>
+                                      <div class="price-input-wrapper">
+                                          <span class="price-symbol">$</span>
+                                          <input type="text" id="mobile-max-price" placeholder="Máximo" class="price-input" inputmode="numeric">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Actualizar los filtros móviles -->
+                          <div class="checkbox-filters">
+                              <label class="checkbox-container">
+                                  <input type="checkbox" id="mobile-destacados-filter">
+                                  <span class="checkmark"></span>
+                                  Productos destacados
+                              </label>
+                              <label class="checkbox-container">
+                                  <input type="checkbox" id="mobile-nuevos-filter">
+                                  <span class="checkmark"></span>
+                                  Nuevos productos
+                              </label>
+                              <label class="checkbox-container">
+                                  <input type="checkbox" id="mobile-promociones-filter">
+                                  <span class="checkmark"></span>
+                                  En promoción
+                              </label>
+                              <label class="checkbox-container">
+                                  <input type="checkbox" id="mobile-ocultar-sin-stock-filter">
+                                  <span class="checkmark"></span>
+                                  Ocultar sin stock
+                              </label>
+                          </div>
+                          <h4>Descuentos</h4>
+                          <div id="mobile-discount-filters" class="filter-options">
+                              <!-- Los filtros de descuento móviles se generarán dinámicamente -->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Productos -->
+              <div class="shop-content">
+                  <div class="shop-header">
+                      <p class="products-count">Mostrando <span id="products-count">0</span> de <span id="total-products-count">0</span> productos</p>
+                      <div class="sort-container no-select">
+                          <label for="sort-select">Ordenar por:</label>
+                          <select id="sort-select" class="sort-select">
+                              <option value="precio-asc">Menor Precio</option>
+                              <option value="precio-desc">Mayor Precio</option>
+                              <option value="nombre-asc">A-Z</option>
+                              <option value="nombre-desc">Z-A</option>
+                          </select>
+                      </div>
+                  </div>
+                  
+                  <div id="products-grid" class="products-grid">
+                      <!-- Los productos se cargarán dinámicamente con JavaScript -->
+                  </div>
+                  
+                  <!-- Paginación -->
+                  <div id="pagination" class="pagination">
+                      <!-- La paginación se generará dinámicamente -->
+                  </div>
+                  
+                  <!-- Mensaje si no hay productos -->
+                  <div id="no-products" class="no-products hidden">
+                      <h3>No se encontraron productos</h3>
+                      <p>Intenta cambiar los filtros de búsqueda</p>
+                      <button id="clear-filters" class="button button-outline">Limpiar filtros</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
+
+  <footer class="footer">
+      <div class="container">
+          <div class="footer-grid">
+              <!-- Logo y descripción -->
+              <div class="footer-column">
+                  <a href="/" class="footer-logo">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-leaf">
+                          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                      </svg>
+                      <span>Ricardito</span>
+                  </a>
+                  <p>Tu lugar para encontrar productos sin TACC, saludables y naturales. Desde 2015 ofreciendo la mejor calidad.</p>
+                  <div class="social-links">
+                      <a href="#" aria-label="Facebook">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                          </svg>
+                      </a>
+                      <a href="#" aria-label="Instagram">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                          </svg>
+                      </a>
+                      <a href="#" aria-label="Twitter">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+              
+              <!-- Enlaces rápidos -->
+              <div class="footer-column">
+                  <h3>Enlaces Rápidos</h3>
+                  <ul class="footer-links">
+                      <li><a href="/">Inicio</a></li>
+                      <li><a href="../pages/shop.html">Tienda</a></li>
+                      <li><a href="../pages/contact.html">Contacto</a></li>
+                      <li><a href="../pages/about.html">Nosotros</a></li>
+                      <li><a href="../pages/faq.html">Preguntas Frecuentes</a></li>
+                  </ul>
+              </div>
+              
+              <!-- Contacto -->
+              <div class="footer-column">
+                  <h3>Contacto</h3>
+                  <ul class="contact-info">
+                      <li>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                              <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                          <span>Av. Siempre Viva 123<br>Springfield, Argentina</span>
+                      </li>
+                      <li>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                          </svg>
+                          <span>+54 11 1234-5678</span>
+                      </li>
+                      <li>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                          </svg>
+                          <span>info@ricardito.com</span>
+                      </li>
+                  </ul>
+              </div>
+              
+              <!-- Newsletter -->
+              <div class="footer-column">
+                  <h3>Newsletter</h3>
+                  <p>Suscríbete para recibir noticias, ofertas y novedades.</p>
+                  <form class="newsletter-form">
+                      <input type="email" placeholder="Tu email" required>
+                      <button type="submit" class="button">Suscribirse</button>
+                  </form>
+              </div>
+          </div>
+          
+          <div class="footer-bottom">
+              <p>&copy; <span id="current-year"></span> Dietética Ricardito. Todos los derechos reservados.</p>
+              <p>&copy; Desarrollado por Capria Franco.</p>
+          </div>
+      </div>
+  </footer>
+
+  <script src="../script/script.js"></script>
+</body>
+</html>
+
