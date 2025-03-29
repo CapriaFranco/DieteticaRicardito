@@ -8,7 +8,7 @@
   --color-background: #ffffff;
   --color-text: #333333;
   --color-text-light: #666666;
-  --color-border: #e5e7eb;
+  --color-border: #d3d4d6;
   --color-muted: #f3f4f6;
   --color-muted-dark: #d1d5db;
   --color-accent: #fbbf24;
@@ -1069,7 +1069,6 @@ main .container {
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;
   user-select: none;
 }
 

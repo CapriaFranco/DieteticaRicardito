@@ -12,7 +12,6 @@
     display: grid;
     gap: 2rem;
     max-width: 1200px;
-    margin: 0 auto;
     padding: 0;
   }
   
@@ -614,8 +613,8 @@
   .product-price-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
+    align-items: end;
+    height: 3rem;
   }
   
   .price-wrapper {
@@ -634,6 +633,8 @@
     font-size: 0.875rem;
     text-decoration: line-through;
     color: var(--color-text-light);
+    margin-left: auto;
+    margin-bottom: -0.5rem;
   }
   
   .product-stock {
@@ -687,7 +688,7 @@
     position: absolute;
     top: 1.5rem;
     right: -2.5rem;
-    background-color: #9333ea; /* Purple color */
+    background-color: #9333ea; /* Purple color 9333ea*/
     color: white;
     padding: 0.25rem 2.5rem;
     font-weight: 600;
