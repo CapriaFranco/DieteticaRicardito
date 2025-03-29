@@ -1099,17 +1099,6 @@
       "etiquetas": ["destacado", "nuevo"],
       "stock": 12,
       "promocion": 0
-    },
-    {
-      "id": 101,
-      "nombre": "Proteína de cáñamo orgánica",
-      "precio": 100000,
-      "imagen": "../img/producto/Ricardito.png",
-      "altimg": "Proteína de cáñamo orgánica",
-      "categoria": ["proteinas", "vegano", "organicos"],
-      "etiquetas": ["destacado", "nuevo", "sin-stock"],
-      "stock": 50,
-      "promocion": 90
     }
   ]
 }

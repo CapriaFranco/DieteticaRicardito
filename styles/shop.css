@@ -408,6 +408,7 @@
   }
   
   .sort-select {
+    width: 200px;
     padding: 0.5rem;
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
