@@ -1236,6 +1236,123 @@ document.addEventListener("DOMContentLoaded", () => {
     generateDiscountFilters()
   }
 
+  // Modificar la función loadProducts para manejar correctamente las rutas en GitHub Pages
+  async function loadProducts() {
+    try {
+      // Determinar la ruta correcta según la página actual
+      const isHomePage =
+        window.location.pathname.endsWith("index.html") ||
+        window.location.pathname.endsWith("/") ||
+        window.location.pathname.endsWith("/DieteticaRicardito/")
+
+      // Ajustar la ruta según si estamos en GitHub Pages o local
+      let jsonPath
+      if (window.location.hostname === "capriafranco.github.io") {
+        // Estamos en GitHub Pages
+        jsonPath = isHomePage ? "./data/products.json" : "../data/products.json"
+      } else {
+        // Estamos en desarrollo local
+        jsonPath = isHomePage ? "./data/products.json" : "../data/products.json"
+      }
+
+      const response = await fetch(jsonPath)
+      if (!response.ok) {
+        throw new Error("No se pudo cargar el archivo de productos")
+      }
+      const data = await response.json()
+      return data.productos
+    } catch (error) {
+      console.error("Error al cargar productos:", error)
+      return []
+    }
+  }
+
+  // Modificar la función renderFeaturedProducts para manejar correctamente las rutas de imágenes
+  async function renderFeaturedProducts() {
+    const productCarousel = document.querySelector(".product-carousel")
+    if (!productCarousel) return
+
+    try {
+      const productos = await loadProducts()
+      const featuredProducts = productos.filter((producto) => producto.etiquetas.includes("destacado")).slice(0, 5)
+
+      let productsHTML = ""
+
+      featuredProducts.forEach((producto) => {
+        const sinStock = producto.stock <= 0 || producto.etiquetas.includes("sin-stock")
+
+        // Ajustar la ruta de la imagen para GitHub Pages
+        let imagenAjustada = producto.imagen.replace("../", "./")
+
+        // Si estamos en GitHub Pages, asegurarnos de que la ruta sea correcta
+        if (window.location.hostname === "capriafranco.github.io") {
+          // Usar rutas relativas para GitHub Pages
+          imagenAjustada = imagenAjustada.replace("./img/", "./img/")
+        }
+
+        productsHTML += `
+        <div class="product-card">
+            <div class="product-image">
+                <img src="${imagenAjustada}" alt="${producto.altimg}" loading="lazy">
+                <div class="product-badges">
+                    ${producto.etiquetas
+                      .map((etiqueta) => {
+                        if (etiqueta === "nuevo") {
+                          return '<span class="product-badge new-badge">Nuevo</span>'
+                        } else if (etiqueta === "destacado") {
+                          return '<span class="product-badge featured-badge">Destacado</span>'
+                        } else if (etiqueta === "sin-stock") {
+                          return '<span class="product-badge stock-badge">Sin Stock</span>'
+                        }
+                        return ""
+                      })
+                      .join("")}
+                    ${
+                      producto.stock <= 0 && !producto.etiquetas.includes("sin-stock")
+                        ? '<span class="product-badge stock-badge">Sin Stock</span>'
+                        : ""
+                    }
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title" title="${producto.nombre}">${producto.nombre}</h3>
+                <p class="product-price">$${producto.precio}</p>
+            </div>
+            <button class="button add-to-cart-button" data-id="${producto.id}" data-name="${producto.nombre}" data-price="${producto.precio}" data-image="${imagenAjustada}" data-stock="${producto.stock}" ${
+              sinStock ? "disabled" : ""
+            }>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                Agregar
+            </button>
+        </div>
+      `
+      })
+
+      productCarousel.innerHTML = productsHTML
+
+      // Agregar event listeners a los botones de agregar al carrito
+      document.querySelectorAll(".add-to-cart-button").forEach((button) => {
+        if (!button.disabled) {
+          button.addEventListener("click", function () {
+            const id = this.getAttribute("data-id")
+            const name = this.getAttribute("data-name")
+            const price = Number.parseFloat(this.getAttribute("data-price"))
+            const image = this.getAttribute("data-image")
+            const stock = Number.parseInt(this.getAttribute("data-stock"))
+
+            addToCart(id, name, price, image, stock)
+          })
+        }
+      })
+    } catch (error) {
+      console.error("Error al renderizar productos destacados:", error)
+    }
+  }
+
   // Iniciar renderizado de productos destacados en la página de inicio
   if (window.location.pathname === "/" || window.location.pathname.endsWith("index.html")) {
     renderFeaturedProducts()
